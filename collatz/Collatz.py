@@ -22,6 +22,8 @@ def collatz_read (s) :
 # ------------
 # collatz_eval
 # ------------
+CACHE_SIZE = 1000000
+LazyCache = [-1] * CACHE_SIZE
 
 def collatz_eval (i, j) :
     """
@@ -31,7 +33,6 @@ def collatz_eval (i, j) :
     """
     # <your code>
     return 1
-
 # -------------
 # collatz_print
 # -------------
