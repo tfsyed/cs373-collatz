@@ -24,7 +24,7 @@ def collatz_read (s) :
 # ------------
 CACHE_SIZE = 1000000
 LazyCache = [-1] * CACHE_SIZE
-
+ 
 def collatz_eval (i, j) :
     """
     i the beginning of the range, inclusive
@@ -32,7 +32,58 @@ def collatz_eval (i, j) :
     return the max cycle length of the range [i, j]
     """
     # <your code>
-    return 1
+    assert i > 0
+    assert i < 1000000
+    assert j > 0
+    assert j < 1000000
+
+    if(i < j):
+        low = i
+        high = j
+    else:
+        low = j
+        high = i
+
+    maxLength = 1
+    for x in range(low,high+1):
+        cycle_length = 1
+      #  print('cycle length is' + str(cycle_length) + '\n')
+
+        while(x> 1):
+            if(x % 2 == 0):
+                x = x >> 1
+                cycle_length+=1
+                
+            else:
+                x = f(x)
+                cycle_length+=2
+        
+       # print('Inremented cycle length is' + str(cycle_length) + '\n')
+        
+        maxLength = max(maxLength,cycle_length)
+       # print('Max cycle length is' + str(maxLength) + '\n')
+    assert maxLength > 0
+    return maxLength
+    
+
+def f(n):
+    return n + (n >>1) + 1
+#--------------
+# cycle_length
+#--------------
+"""
+def cycleLength (n):
+    assert n > 0
+    c = 1
+    while n > 1:
+        if (n % 2) == 0:
+            n = (n//2)
+        else:
+            n = (3 * n)+1
+        c+=1
+    assert c >0 
+    return c
+"""
 # -------------
 # collatz_print
 # -------------
