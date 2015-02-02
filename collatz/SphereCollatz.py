@@ -16,9 +16,6 @@ import sys
 # main
 # ----
 
-if __name__ == "__main__" :
-    collatz_solve(sys.stdin, sys.stdout)
-
 
 def collatz_read (s) :
     """
@@ -121,3 +118,6 @@ def collatz_solve (r, w) :
         i, j = collatz_read(s)
         v    = collatz_eval(i, j)
         collatz_print(w, i, j, v)
+
+if __name__ == "__main__" :
+    collatz_solve(sys.stdin, sys.stdout)

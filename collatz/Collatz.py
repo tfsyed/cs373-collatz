@@ -23,7 +23,8 @@ def collatz_read (s) :
 # collatz_eval
 # ------------
 CACHE_SIZE = 1000000
-LazyCache = [-1] * CACHE_SIZE
+EagerCache = [-1] * CACHE_SIZE
+ 
  
 def collatz_eval (i, j) :
     """
@@ -37,14 +38,18 @@ def collatz_eval (i, j) :
     assert j > 0
     assert j < 1000000
 
+    low = 1
+    high =1
+
     #introducing low and high as the inclusion and exclusion range variables.
     if(i < j):
         low = i
         high = j
+    # max(i, j) = max(j/2, j) if j/2 > 1    
+    
     else:
         low = j
         high = i
-
     maxLength = 1
 
     for x in range(low,high+1):
@@ -73,19 +78,23 @@ def f(n):
 #--------------
 # cycle_length
 #--------------
-"""
+
 def cycleLength (n):
     assert n > 0
     c = 1
     while n > 1:
         if (n % 2) == 0:
-            n = (n//2)
+            #n = (n//2)
+             n = n >> 1
+             c+=1
         else:
-            n = (3 * n)+1
-        c+=1
+            #n = (3 * n)+1
+            n = f(n)
+            c+=2
+        
     assert c >0 
     return c
-"""
+
 # -------------
 # collatz_print
 # -------------
