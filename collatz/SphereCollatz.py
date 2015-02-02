@@ -10,6 +10,16 @@
 # collatz_read
 # ------------
 
+import sys
+
+# ----
+# main
+# ----
+
+if __name__ == "__main__" :
+    collatz_solve(sys.stdin, sys.stdout)
+
+
 def collatz_read (s) :
     """
     read two ints
@@ -22,9 +32,7 @@ def collatz_read (s) :
 # ------------
 # collatz_eval
 # ------------
-CACHE_SIZE = 1000000
-LazyCache = [-1] * CACHE_SIZE
- 
+
 def collatz_eval (i, j) :
     """
     i the beginning of the range, inclusive
