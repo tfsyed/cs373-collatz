@@ -127,6 +127,33 @@ class TestCollatz (TestCase) :
         collatz_solve(r, w)
         self.assertEqual(w.getvalue(), "3 2 8\n100 200 125\n201 210 89\n900 1000 174\n")
 
+
+    def test_solve2 (self) :
+        r = StringIO("999999 999999\n999999 1\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(w.getvalue(), "999999 999999 259\n999999 1 525\n")
+  
+  
+    def test_solve2 (self) :
+        r = StringIO("1 1\n1 999999\n999998 999999\n244796 493938\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(w.getvalue(), "1 1 1\n1 999999 525\n999998 999999 259\n244796 493938 449\n")
+    """
+    def test_solve3(self) :
+        r = StringIO("1 9999\n9999 10001\n1 1\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(w.getvalue(), "1 9999 262\n9999 10001 180\n1 1 1\n")
+
+    
+    def test_solve4(self) :
+        r = StringIO("1 9999\n9999 10001\n99999 100000\n999999 1000000\n")
+        w = StringIO()
+        collatz_solve(r, w)
+        self.assertEqual(w.getvalue(), "1 9999 262\n9999 10001 180\n99999 100000 227\n999999 1000000 259\n")
+    """
 # ----
 # main
 # ----

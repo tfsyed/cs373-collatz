@@ -75,22 +75,7 @@ def collatz_eval (i, j) :
 
 def f(n):
     return n + (n >>1) + 1
-#--------------
-# cycle_length
-#--------------
-"""
-def cycleLength (n):
-    assert n > 0
-    c = 1
-    while n > 1:
-        if (n % 2) == 0:
-            n = (n//2)
-        else:
-            n = (3 * n)+1
-        c+=1
-    assert c >0 
-    return c
-"""
+
 # -------------
 # collatz_print
 # -------------

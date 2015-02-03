@@ -38,18 +38,14 @@ def collatz_eval (i, j) :
     assert j > 0
     assert j < 1000000
 
-    low = 1
-    high =1
-
     #introducing low and high as the inclusion and exclusion range variables.
     if(i < j):
         low = i
         high = j
-    # max(i, j) = max(j/2, j) if j/2 > 1    
-    
     else:
         low = j
         high = i
+
     maxLength = 1
 
     for x in range(low,high+1):
