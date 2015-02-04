@@ -140,20 +140,7 @@ class TestCollatz (TestCase) :
         w = StringIO()
         collatz_solve(r, w)
         self.assertEqual(w.getvalue(), "1 1 1\n1 999999 525\n999998 999999 259\n244796 493938 449\n")
-    """
-    def test_solve3(self) :
-        r = StringIO("1 9999\n9999 10001\n1 1\n")
-        w = StringIO()
-        collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "1 9999 262\n9999 10001 180\n1 1 1\n")
 
-    
-    def test_solve4(self) :
-        r = StringIO("1 9999\n9999 10001\n99999 100000\n999999 1000000\n")
-        w = StringIO()
-        collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "1 9999 262\n9999 10001 180\n99999 100000 227\n999999 1000000 259\n")
-    """
 # ----
 # main
 # ----

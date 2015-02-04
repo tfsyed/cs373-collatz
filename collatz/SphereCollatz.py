@@ -11,10 +11,19 @@
 # ------------
 
 import sys
+import math 
 
-# ----
-# main
-# ----
+#!/usr/bin/env python3
+
+# ---------------------------
+# projects/collatz/Collatz.py
+# Copyright (C) 2015
+# Glenn P. Downing
+# ---------------------------
+
+# ------------
+# collatz_read
+# ------------
 
 
 def collatz_read (s) :
@@ -30,6 +39,10 @@ def collatz_read (s) :
 # collatz_eval
 # ------------
 
+CollatzCache = {} #lazy cache
+
+ 
+ 
 def collatz_eval (i, j) :
     """
     i the beginning of the range, inclusive
@@ -46,6 +59,9 @@ def collatz_eval (i, j) :
     if(i < j):
         low = i
         high = j
+    elif( i < j/2):
+        low = j/2
+        high = j
     else:
         low = j
         high = i
@@ -55,26 +71,36 @@ def collatz_eval (i, j) :
     for x in range(low,high+1):
         cycle_length = 1
       #  print('cycle length is' + str(cycle_length) + '\n')
-
+        if (x == 1):
+            CollatzCache[x] = cycle_length
         while(x> 1):
-            if(x % 2 == 0):
+            if x in CollatzCache:
+                cycle_length += CollatzCache[x]-1
+            elif(x % 2 == 0):
                 x = x >> 1
                 cycle_length+=1
-                
             else:
                 x = f(x)
                 cycle_length+=2
         
+        CollatzCache[x] = cycle_length  
+
+        #post condition checks: 
+        assert CollatzCache != {} , 'Nothing cached'     
+
        # print('Inremented cycle length is' + str(cycle_length) + '\n')
-        
         maxLength = max(maxLength,cycle_length)
        # print('Max cycle length is' + str(maxLength) + '\n')
+    #invariant check 
+    assert maxLength >= cycle_length
+    #return value check 
     assert maxLength > 0
     return maxLength
     
 
 def f(n):
     return n + (n >>1) + 1
+
 
 # -------------
 # collatz_print
@@ -103,6 +129,10 @@ def collatz_solve (r, w) :
         i, j = collatz_read(s)
         v    = collatz_eval(i, j)
         collatz_print(w, i, j, v)
+
+# ----
+# main
+# ----
 
 if __name__ == "__main__" :
     collatz_solve(sys.stdin, sys.stdout)
