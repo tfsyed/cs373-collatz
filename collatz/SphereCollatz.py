@@ -11,7 +11,6 @@
 # ------------
 
 import sys
-import math 
 
 #!/usr/bin/env python3
 
@@ -59,8 +58,8 @@ def collatz_eval (i, j) :
     if(i < j):
         low = i
         high = j
-    elif( i < j/2): #optimization recommended in quiz # 3/4
-        low = j/2
+    elif( i < j//2): #optimization recommended in quiz # 3/4
+        low = j//2
         high = j
     else:
         low = j
@@ -132,6 +131,13 @@ def collatz_solve (r, w) :
         i, j = collatz_read(s)
         v    = collatz_eval(i, j)
         collatz_print(w, i, j, v)
+
+# ----
+# main
+# ----
+
+if __name__ == "__main__" :
+    collatz_solve(sys.stdin, sys.stdout)
 
 # ----
 # main

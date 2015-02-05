@@ -10,7 +10,7 @@
 # collatz_read
 # ------------
 
-import math 
+
 def collatz_read (s) :
     """
     read two ints
@@ -35,22 +35,22 @@ def collatz_eval (i, j) :
     return the max cycle length of the range [i, j]
     """
     # <your code>
-    assert i > 0
-    assert i < 1000000
-    assert j > 0
-    assert j < 1000000
+    assert i > 0 and i < 1000000
+    assert j > 0 and j < 1000000
 
     #introducing low and high as the inclusion and exclusion range variables.
-    if(i < j):
+    
+    if(i <= j):
         low = i
-        high = j
-    elif( i < j/2): #optimization recommended in quiz # 3/4
-        low = j/2
         high = j
     else:
         low = j
         high = i
-
+    
+    if( i < j//2): #optimization recommended in quiz # 3/4
+        low = j//2
+        high = j
+    
     maxLength = 1
 
     for x in range(low,high+1):
