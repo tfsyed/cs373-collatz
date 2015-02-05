@@ -75,15 +75,20 @@ def collatz_eval (i, j) :
         CollatzCache[x] = cycle_length  
 
         #post condition checks: 
-        #assert CollatzCache != {} , 'Nothing cached'     
+        assert CollatzCache != {} , 'Nothing cached'     
 
         #print('Inremented cycle length is' + str(cycle_length) + '\n')
+        
         maxLength = max(maxLength,cycle_length)
+        
         #print('Max cycle length is' + str(maxLength) + '\n')
+    
     #invariant check 
-    #assert maxLength >= cycle_length
+    assert maxLength >= cycle_length
+    
     #return value check 
     assert maxLength > 0
+    
     return maxLength
    
 # -------------
