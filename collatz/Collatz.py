@@ -24,7 +24,7 @@ def collatz_read (s) :
 # collatz_eval
 # ------------
 
-CollatzCache = {}
+CollatzCache = dict()
 
  
  
@@ -44,7 +44,7 @@ def collatz_eval (i, j) :
     if(i < j):
         low = i
         high = j
-    elif( i < j/2):
+    elif( i < j/2): #optimization recommended in quiz # 3/4
         low = j/2
         high = j
     else:
@@ -55,55 +55,43 @@ def collatz_eval (i, j) :
 
     for x in range(low,high+1):
         cycle_length = 1
-      #  print('cycle length is' + str(cycle_length) + '\n')
-        if (x == 1):
-            CollatzCache[x] = cycle_length
-        while(x> 1):
-            if x in CollatzCache:
-                cycle_length += CollatzCache[x]-1
-            elif(x % 2 == 0):
-                x = x >> 1
-                cycle_length+=1
-            else:
-                x = f(x)
-                cycle_length+=2
+        #print('cycle length is' + str(cycle_length) + '\n')
+        
+        if x in CollatzCache:
+            cycle_length = CollatzCache[x]
+        else:
+            temp = x
+            while(temp > 1):
+                if temp in CollatzCache:
+                    cycle_length += CollatzCache[temp]-1
+                    break
+                if(temp % 2 == 0):
+                    temp = temp >> 1
+                    cycle_length+=1
+                else:
+                    temp = f(temp)
+                    cycle_length+=2
         
         CollatzCache[x] = cycle_length  
 
         #post condition checks: 
-        assert CollatzCache != {} , 'Nothing cached'     
+        #assert CollatzCache != {} , 'Nothing cached'     
 
-       # print('Inremented cycle length is' + str(cycle_length) + '\n')
+        #print('Inremented cycle length is' + str(cycle_length) + '\n')
         maxLength = max(maxLength,cycle_length)
-       # print('Max cycle length is' + str(maxLength) + '\n')
+        #print('Max cycle length is' + str(maxLength) + '\n')
     #invariant check 
-    assert maxLength >= cycle_length
+    #assert maxLength >= cycle_length
     #return value check 
     assert maxLength > 0
     return maxLength
-    
+   
+# -------------
+# collatz_print - odd numbered computation 
+# -------------
 
 def f(n):
     return n + (n >>1) + 1
-#--------------
-# cycle_length
-#--------------
-
-def cycleLength (n):
-    assert n > 0
-    c = 1
-    while n > 1:
-        if (n % 2) == 0:
-            #n = (n//2)
-             n = n >> 1
-             c+=1
-        else:
-            #n = (3 * n)+1
-            n = f(n)
-            c+=2
-        
-    assert c >0 
-    return c
 
 # -------------
 # collatz_print
