@@ -35,6 +35,7 @@ def collatz_eval (i, j) :
     return the max cycle length of the range [i, j]
     """
     # <your code>
+    #Valid input check 
     assert i > 0 and i < 1000000
     assert j > 0 and j < 1000000
 
@@ -47,14 +48,17 @@ def collatz_eval (i, j) :
         low = j
         high = i
     
-    if( i < j//2): #optimization recommended in quiz # 3/4
+
+    if( i < j//2): #optimization recommended in class quizzes
         low = j//2
         high = j
     
+
     maxLength = 1
 
     for x in range(low,high+1):
         cycle_length = 1
+    
         #print('cycle length is' + str(cycle_length) + '\n')
         
         if x in CollatzCache:
@@ -69,15 +73,13 @@ def collatz_eval (i, j) :
                     temp = temp >> 1
                     cycle_length+=1
                 else:
-                    temp = f(temp)
+                    temp = temp + (temp >>1) + 1
                     cycle_length+=2
         
         CollatzCache[x] = cycle_length  
 
         #post condition checks: 
         assert CollatzCache != {} , 'Nothing cached'     
-
-        #print('Inremented cycle length is' + str(cycle_length) + '\n')
         
         maxLength = max(maxLength,cycle_length)
         

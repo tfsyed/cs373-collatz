@@ -10,20 +10,7 @@
 # collatz_read
 # ------------
 
-import sys
-
-#!/usr/bin/env python3
-
-# ---------------------------
-# projects/collatz/Collatz.py
-# Copyright (C) 2015
-# Glenn P. Downing
-# ---------------------------
-
-# ------------
-# collatz_read
-# ------------
-
+import sys 
 
 def collatz_read (s) :
     """
@@ -38,7 +25,7 @@ def collatz_read (s) :
 # collatz_eval
 # ------------
 
-CollatzCache = dict() #lazy cache
+CollatzCache = dict()
 
  
  
@@ -49,22 +36,23 @@ def collatz_eval (i, j) :
     return the max cycle length of the range [i, j]
     """
     # <your code>
-    assert i > 0
-    assert i < 1000000
-    assert j > 0
-    assert j < 1000000
+    #Valid input check 
+    assert i > 0 and i < 1000000
+    assert j > 0 and j < 1000000
 
     #introducing low and high as the inclusion and exclusion range variables.
-    if(i < j):
+    
+    if(i <= j):
         low = i
-        high = j
-    elif( i < j//2): #optimization recommended in quiz # 3/4
-        low = j//2
         high = j
     else:
         low = j
         high = i
-
+    
+    if( i < j//2): #optimization recommended in class quizzes
+        low = j//2
+        high = j
+    
     maxLength = 1
 
     for x in range(low,high+1):
@@ -83,7 +71,7 @@ def collatz_eval (i, j) :
                     temp = temp >> 1
                     cycle_length+=1
                 else:
-                    temp = f(temp)
+                    temp = temp + (temp >>1) + 1
                     cycle_length+=2
         
         CollatzCache[x] = cycle_length  
@@ -92,18 +80,19 @@ def collatz_eval (i, j) :
         assert CollatzCache != {} , 'Nothing cached'     
 
         #print('Inremented cycle length is' + str(cycle_length) + '\n')
+        
         maxLength = max(maxLength,cycle_length)
+        
         #print('Max cycle length is' + str(maxLength) + '\n')
+    
     #invariant check 
     assert maxLength >= cycle_length
+    
     #return value check 
     assert maxLength > 0
+    
     return maxLength
-
-def f(n):
-    return n + (n >>1) + 1
-
-
+   
 # -------------
 # collatz_print
 # -------------
@@ -131,14 +120,6 @@ def collatz_solve (r, w) :
         i, j = collatz_read(s)
         v    = collatz_eval(i, j)
         collatz_print(w, i, j, v)
-
-# ----
-# main
-# ----
-
-if __name__ == "__main__" :
-    collatz_solve(sys.stdin, sys.stdout)
-
 # ----
 # main
 # ----

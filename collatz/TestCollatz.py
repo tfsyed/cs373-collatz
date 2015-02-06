@@ -148,7 +148,8 @@ class TestCollatz (TestCase) :
 if __name__ == "__main__" :
     main()
 
-"""
+""" #pragma: no cover
+
 % coverage3 run --branch TestCollatz.py >  TestCollatz.out 2>&1
 
 
