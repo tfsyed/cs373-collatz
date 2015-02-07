@@ -92,13 +92,14 @@ def collatz_eval (i, j) :
     assert maxLength > 0
     
     return maxLength
-   
+"""  
 # -------------
 # collatz_print - odd numbered computation 
 # -------------
 
 def f(n):
     return n + (n >>1) + 1
+"""
 
 # -------------
 # collatz_print
