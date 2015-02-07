@@ -129,17 +129,17 @@ class TestCollatz (TestCase) :
 
 
     def test_solve2 (self) :
-        r = StringIO("999999 999999\n999999 1\n")
+        r = StringIO("266726 2660\n27 31\n")
         w = StringIO()
         collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "999999 999999 259\n999999 1 525\n")
+        self.assertEqual(w.getvalue(), "266726 2660 443\n27 31 112\n")
   
   
     def test_solve2 (self) :
-        r = StringIO("1 1\n1 999999\n999998 999999\n244796 493938\n")
+        r = StringIO("1 1\n201 210\n100 200\n 33007 99402\n")
         w = StringIO()
         collatz_solve(r, w)
-        self.assertEqual(w.getvalue(), "1 1 1\n1 999999 525\n999998 999999 259\n244796 493938 449\n")
+        self.assertEqual(w.getvalue(), "1 1 1\n201 210 89\n100 200 125\n33007 99402 351\n")
 
 # ----
 # main
