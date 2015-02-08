@@ -1,3 +1,15 @@
+commit f0b3be7669f863d2f5a7a01ea38b11a9ba453607
+Author: tfsyed <tehreemsyed@Tehreems-MacBook-Pro.local>
+Date:   Sat Feb 7 18:30:25 2015 -0600
+
+    Small changes to unit tests
+
+commit d26605d913b3959bac69b8b551d11f9dfec4e8eb
+Author: tfsyed <tehreemsyed@Tehreems-MacBook-Pro.local>
+Date:   Sat Feb 7 18:21:18 2015 -0600
+
+    Updated Collatz.log
+
 commit ed8f6e1371a03d28f3b450253408dc231aa35da7
 Author: tfsyed <tehreemsyed@Tehreems-MacBook-Pro.local>
 Date:   Sat Feb 7 18:14:15 2015 -0600
