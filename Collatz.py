@@ -24,7 +24,7 @@ def collatz_read (s) :
 # collatz_eval
 # ------------
 
-CollatzCache = dict()
+CollatzCache = dict() #Lazycache
 
  
  
@@ -73,6 +73,7 @@ def collatz_eval (i, j) :
                     temp = temp >> 1
                     cycle_length+=1
                 else:
+                    #Used odd numbered Optimization mentioned by Prof Downing 
                     temp = temp + (temp >>1) + 1
                     cycle_length+=2
         
